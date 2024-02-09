@@ -1,0 +1,76 @@
+// CS540_HW1.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// Eddie Allen E762P452
+
+#include <cstdlib>
+#include<iostream>
+#include<string>
+#include<cstring>
+
+
+using namespace std;
+
+int main()
+{
+    bool go = true;
+    while (go) {
+        cout << "1. List directory contents" << endl;
+        cout << "2. Print working directory" << endl;
+        cout << "3. Create a new directory" << endl;
+        cout << "4. Display a message" << endl;
+        cout << "5. Concatenate and display content of a file" << endl;
+        cout << "6. Exit" << endl;
+        cout << "Enter an option: ";
+        int user_input;
+        cin >> user_input;
+        string file1;
+        string file2;
+        switch (user_input) {
+        case 1:
+            system("dir"); // print directory list
+            break;
+        case 2:
+            system("cd"); //print current directory
+            break;
+        case 3:
+        {
+            int mkdirResult = system("mkdir new_folder");
+            cout << "Directory created successfully" << endl;
+            break;
+        }
+        case 4:
+        {
+            int returnCode = system("echo Hello, World!");
+
+            if (returnCode == 0) {
+                cout << "command executed successfully." << endl;
+            }
+            else {
+                cout << "command execution failed or returned "
+                    "non-zero: " << returnCode << endl;
+            }
+            break;
+        }
+        case 5:
+        {
+            system("echo call file");
+            cin >> file1;
+            system("echo call file");
+            cin >> file2;
+
+            string test = "type " + file1 + " > " + file2;
+            system(test.c_str());
+            system("dir");
+            break;
+        }
+        case 6:
+            go = false;
+            break;
+        }
+    }
+    /* int delResult = system("rmdir /s /q new_folder");
+     if (delResult != 0) {
+         cout << "Directory deleted successfully" << endl;
+         return 1;
+     } */
+    return 0;
+}
